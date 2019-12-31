@@ -19,10 +19,9 @@ router.beforeEach(async(to, from, next) => {
 
   // 判断用户是否已经登录
   const hasToken = getToken()
-
   if (hasToken) {
     if (to.path === '/login') {
-      // if is logged in, redirect to the home page
+      // 如果已经登录，重定向到主页
       next({ path: '/' })
       NProgress.done()
     } else {
@@ -32,14 +31,14 @@ router.beforeEach(async(to, from, next) => {
         next()
       } else {
         try {
-          // get user info
-          // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
+          // 获取用户信息
+          // 注意：角色必须是一个对象数组，例如：['admin'] 或者 ,['developer','editor']
           const { roles } = await store.dispatch('user/getInfo')
 
-          // generate accessible routes map based on roles
+          // 根据角色生成路由权限
           const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
 
-          // dynamically add accessible routes
+          // 动态添加路由访问权限
           router.addRoutes(accessRoutes)
 
           // hack method to ensure that addRoutes is complete
