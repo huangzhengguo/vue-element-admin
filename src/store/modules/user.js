@@ -34,13 +34,13 @@ const actions = {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
-        // 这里使用 data 接收数据后，data 为undeined
+        // 这里如果使用 data 接收数据后，data 为undeined
         // const data = response
         commit('SET_TOKEN', response.token)
         setToken(response.token)
         resolve()
       }).catch(error => {
-        reject(error)
+        reject(error.Message)
       })
     })
   },

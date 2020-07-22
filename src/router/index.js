@@ -83,6 +83,22 @@ export const constantRoutes = [
       }
     ]
   },
+
+  // 新增页面
+  {
+    path: '/个人中心',
+    component: () => import(''),
+    children: [
+      {
+        path: '/leave',
+        name: 'leave',
+        meta: { title: '请假管理', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+
+  // 新增页面
+
   {
     path: '/documentation',
     component: Layout,
