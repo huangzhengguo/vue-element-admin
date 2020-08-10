@@ -87,12 +87,22 @@ export const constantRoutes = [
   // 新增页面
   {
     path: '/个人中心',
-    component: () => import(''),
+    name: '个人中心',
+    component: Layout,
+    meta: {
+      title: '个人中心',
+      icon: 'dashboard'
+    },
     children: [
       {
         path: '/leave',
         name: 'leave',
-        meta: { title: '请假管理', icon: 'dashboard', affix: true }
+        meta: { title: '请假管理', icon: 'dashboard' }
+      },
+      {
+        path: '/overTime',
+        name: 'overTime',
+        meta: { title: '加班管理', icon: 'dashboard' }
       }
     ]
   },
